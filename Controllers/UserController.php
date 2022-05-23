@@ -3,8 +3,8 @@ require_once 'models/user.php';
 require_once 'helpers/utils.php';
 Class UserController{
     
-    Public function registerEdit(){
-        require_once 'views/user/register-edit.php';
+    Public function register(){
+        require_once 'views/user/registro.php';
     }
     
     Public function save(){
@@ -118,5 +118,36 @@ Class UserController{
         $jsonrespuesta = json_encode($respuesta,true);
         echo $jsonrespuesta;
     }
+    public function logout() {
+        unset($_SESSION['identity']);
+        unset($_SESSION['mensaje']);
+        unset($_SESSION['persona_temp']);
+        unset($_SESSION['error']);
+        header("Location: http://localhost/minicomputadoras/");
+    }
 
+    public function login() {
+        if (isset($_POST)) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $usuario = new Usuario();
+            $usuario->setEmail($email);
+            $usuario->setPassword($password);
+            $identity = $usuario->login();
+
+            if ($identity) {
+                $_SESSION['identity'] = $identity;
+            } else {
+                $_SESSION['mensaje'] = "failed";
+            }
+        }
+        header("Location: http://localhost/minicomputadoras/");
+        //require_once 'views/user/login.php';
+    }
+    public function iniciar_sesion(){
+        require_once 'views/user/login.php';
+    }
+    public function registro() {
+        require_once 'views/user/register-edit.php';
+    }
 }

@@ -1,0 +1,55 @@
+/* Sarati = PAGINA PRINCIPAL */
+/******* Globales *****/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    padding-top: 70px;
+}
+
+.titulo-de-pagina{
+    text-align: center;
+}    
+/****** Pie de pagina*****/
+footer  {
+   color: #AAA;
+   padding: 45px 30px;
+   text-align: center;
+}
+footer  a{
+    color: #DDD;
+    font-size: 16px;
+    font-weight: bold;
+ }
+ footer a:focus,
+ footer a:hover{
+     color: #DDD;
+     text-decoration: none;
+}
+
+@media only screen and (min-width: 768px){
+    footer {
+        text-align: left;
+
+    }
+    footer .pie-derecho {
+
+        text-align: right;
+    }
+}
+
+/****** Registro*****/
+/* #pagina-registro {
+    border: red thin solid;
+    
+
+}
+#pagina-registro form{
+        border: blue thin solid;
+
+
+} */

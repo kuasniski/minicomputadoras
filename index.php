@@ -1,15 +1,20 @@
 <?php
 ob_start();
 session_start();
-    require_once 'Config/DataBase/conexion.php';
-    require_once 'helpers/utils.php';
+//require_once 'config/conexion.php';
+require_once 'helpers/utils.php';
+require_once "views/layout/header.php";
+
+if (isset($_SESSION['identity']) || isset($_GET['controller'])) {
+    //require_once 'views/layout/sidebar.php';
     require_once 'autoload.php';
+
     if (isset($_GET['controller'])) {
         $nombreControlador = $_GET['controller'] . "Controller";
         $titulo = $_GET['controller'];
     }elseif(!isset($_GET['controller'])){
-        $nombreControlador = "UserController";
-        $titulo = "";
+        $nombreControlador = "homeController";
+        $titulo = "Home";
     } else {
         echo 'Error controlador';
     }
@@ -17,7 +22,7 @@ session_start();
     if (isset($_GET['action'])) {
         $nombreAccion = $_GET['action'];
     }elseif(!isset($_GET['action'])) {
-        $nombreAccion = "registerEdit";
+        $nombreAccion = "inicio";
     }
     else {
         echo 'Error al cargar acction';
@@ -29,3 +34,9 @@ session_start();
     }else{
         echo 'Error al cargar la clase';
     }
+
+}else{
+    header('Location: http://localhost/minicomputadoras/?controller=home&action=inicio');
+    //require_once 'views/home/inicio.php';
+}
+require_once 'views/layout/footer.php';
